@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 3rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #btn {
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            background: white;
+            color: #4f46e5;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        #btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        #btn:active {
+            transform: scale(0.95);
+        }
+
+        #message {
+            margin-top: 20px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Employee Data Generator</h1>
+    <button id="btn">Generate Data</button>
+    <p id="message"></p>
+
+
+
+    <script>
+        document.getElementById("btn").addEventListener("click", async () => {
+
+            const response = await fetch("/", {
+                method: "POST"
+            });
+
+            const msg = await response.text();
+
+            document.getElementById("message").innerText = msg;
+        });
+    </script>
+</body>
+
+</html>
